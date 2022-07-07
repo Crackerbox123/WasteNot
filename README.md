@@ -6,7 +6,7 @@ K-bits
 
 ## Project Description -
 
-A application that stores Plant data + Recipe data can output Recipe ingrediants and instructions on how to grow that plant
+A application that stores Plant data + Recipe data can output Recipe ingredients and instructions on how to grow that plant
 
 
 ## Repository configured - 
@@ -36,6 +36,8 @@ Spoonacular api:
 https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=9145364b47d54a31968bed38b03f6572
 
 GrowStuff api:
+
+https://www.growstuff.org/crops/
 
 TBD
 
