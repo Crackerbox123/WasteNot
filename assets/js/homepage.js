@@ -13,10 +13,11 @@ var getIngredient = function(searchFood) {
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
+       displayIngredients(data);
     });
 });
 };
-getIngredient(searchFood);
+//getIngredient(searchFood);
 
 
 // API function to pull data from Spoonacular API - Search Recipes FROM ingredients
@@ -32,7 +33,7 @@ var getRecipes = function(searchRecipe) {
     });
 });
 };
-getRecipes(searchFood)
+//getRecipes(searchFood)
 
 
 var foodInputEl = document.querySelector("#plant");
@@ -45,6 +46,7 @@ var formSubmitHandler = function(event) {
     console.log(food);
     if (food) {
         getRecipes(food);
+        getIngredient(food);
     } else {
         alert("Please enter a food");
     }
@@ -57,20 +59,24 @@ var displayIngredients = function(food) {
     console.log(food);
     // clear old content
     ingredientContainerEl.textContent = "";
-
+    
     // display info
-    for (var i = 1; i<results[i].length; i++) {
-        
+    for (i = 0; i<food.results.length; i++) {
+       
+        console.log("this function is working")
         //  display jpg
         var itemImage = food.results[i].image;
         var itemImageEl = document.createElement("img");
-        itemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_250x250/"+itemImage);
+        itemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_100x100/"+itemImage);
         ingredientContainerEl.appendChild(itemImageEl);
 
         // display name
         var itemName = food.results[i].name;
-        var itemNameEl = document.createElement("p");
-        itemImageEl.innerHTML = ""
+        console.log(itemName);
+        var itemNameEl = document.createElement("h2");
+        itemNameEl.innerHTML = "Name: "+itemName;
+        console.log(ingredientContainerEl);
+        ingredientContainerEl.appendChild(itemNameEl);
     }
     
 };
