@@ -1,19 +1,10 @@
-// API function pull data from Fruityvice API
+// API function pull data from Spoonacular - Search Ingredient Facts
+var searchFood = "banana"
 
+var getIngredient = function(searchFood) {
 
-
-
-
-
-
-
-
-// API function to pull data from Spoonacular API - Search Recipes FROM ingredients
-searchTerm = "mango"
-
-// Fetch API
-var getRecipes = function(searchTerm) {
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchTerm + "&number=10&apiKey=9145364b47d54a31968bed38b03f6572";
+    // returns 5 foods
+    var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=9145364b47d54a31968bed38b03f6572";
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
@@ -22,5 +13,23 @@ var getRecipes = function(searchTerm) {
 };
 
 // Spoonacular function call
-getRecipes(searchTerm);
+getIngredient(searchFood);
+
+
+// API function to pull data from Spoonacular API - Search Recipes FROM ingredients
+var searchRecipe = "mango"
+
+// Fetch API
+var getRecipes = function(searchRecipe) {
+    // returns 5 recipes
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=9145364b47d54a31968bed38b03f6572";
+    fetch(apiUrl).then(function(response){
+    response.json().then(function(data) {
+       console.log(data);
+    });
+});
+};
+
+// Spoonacular function call
+getRecipes(searchRecipe);
 
