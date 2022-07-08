@@ -30,8 +30,30 @@ var getRecipes = function(searchRecipe) {
 });
 };
 
+var foodInputEl = document.querySelector("#plant");
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    //get value from input element
+    var food = foodInputEl.ariaValueMax.trim();
+    console.log(food);
+    if (food) {
+        getRecipes(food);
+    } else {
+        alert("Please enter a food");
+    }
+};
 // Spoonacular function call
-getRecipes(searchRecipe);
+// getRecipes(searchRecipe);
+
+// var ingredientContainerEl = document.getElementById("ingredient-container");
+
+// var displayIngredient = function (data,searchFood) {
+//     ingredientContainerEl.textContent = "";
+
+//     for (var i= 1; i<results[i]; i++) {
+//         v
+//     }
+// }
 
 
 
