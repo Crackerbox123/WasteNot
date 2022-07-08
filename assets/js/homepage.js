@@ -9,7 +9,7 @@ var searchFood = "banana"
 var getIngredient = function(searchFood) {
 
     // returns 5 foods
-    var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=66860a9f6ecc463a9f11cf2c7e1b8fe0";
+    var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=854e53810e43467a816b9a7449bf9772";
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
@@ -26,7 +26,7 @@ var searchRecipe = "mango"
 // Fetch API
 var getRecipes = function(searchRecipe) {
     // returns 5 recipes
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=66860a9f6ecc463a9f11cf2c7e1b8fe0";
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=854e53810e43467a816b9a7449bf9772";
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
@@ -93,14 +93,52 @@ var displayRecipe = function(food) {
         //console.log("This loop is working");
         // image element
         var recipeImage = food[i].image;
-        console.log(recipeImage);
+        //console.log(recipeImage);
         var recipeImageEl=document.createElement("img");
         recipeImageEl.setAttribute("src", recipeImage);
-        recipeImageEl.className=""; // classname here
+        recipeImageEl.className=""; // <--className here
         recipeContainerEl.appendChild(recipeImageEl);
 
         // name element
+        var recipeName=food[i].title;
+        console.log(recipeName);
+        var recipeNameEl=document.createElement ("h2");
+        recipeNameEl.textContent="Recipe Name: "+recipeName;
+        recipeNameEl.className="";  // <--className here
+        recipeContainerEl.appendChild(recipeNameEl);
+
+        // ul div created for il's of ingredients
+        var recipeUl=document.createElement("ul");
+        recipeUl.textContent= "Ingredients:";
+        recipeUl.className=""; // <--className here for ul
+        recipeContainerEl.appendChild(recipeUl);
+
+        for (x=0; x<food[i].usedIngredients.length;x++) {
+            console.log ("this is MF'in working");
+            var usedIngName = food[i].usedIngredients[x].original;
+            var usedIngNameEl = document.createElement("li");
+            usedIngNameEl.textContent= usedIngName;
+            usedIngNameEl.className=""; // <-- className here
+            recipeUl.appendChild(usedIngNameEl);
+
+        }
         
+        //console.log(food[i].missedIngredients)
+        for (x=0; x<food[i].missedIngredients.length; x++) {
+            //console.log("this is working");
+            // missed incredient loop( I believe this is unentered ingredients)
+            console.log(food[i].missedIngredients[x].name);
+            var missedIngNam = food[i].missedIngredients[x].original;
+            //console.log(missedIngNam);
+            var missedIngNamEl =document.createElement("li");
+            missedIngNamEl.textContent= missedIngNam;
+            missedIngNamEl.classname=""; // <-- className here
+            recipeUl.appendChild(missedIngNamEl);
+
+
+        }
+
+
     }
 
     
