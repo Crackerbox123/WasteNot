@@ -36,8 +36,9 @@ var getRecipes = function(searchRecipe) {
 //getRecipes(searchFood)
 
 
-var foodInputEl = document.querySelector("#plant");
 
+// Form Submit Handler Logic
+var foodInputEl = document.querySelector("#plant");
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
