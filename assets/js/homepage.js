@@ -16,8 +16,6 @@ var getIngredient = function(searchFood) {
     });
 });
 };
-
-// Spoonacular function call
 getIngredient(searchFood);
 
 
@@ -35,7 +33,10 @@ var getRecipes = function(searchRecipe) {
 });
 };
 
+
+// Form Submit Handler Logic
 var foodInputEl = document.querySelector("#plant");
+
 var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element

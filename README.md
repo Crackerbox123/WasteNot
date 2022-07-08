@@ -41,6 +41,8 @@ Backup api keys:
 
 66860a9f6ecc463a9f11cf2c7e1b8fe0
 
+854e53810e43467a816b9a7449bf9772
+
 GrowStuff api:
 
 https://www.growstuff.org/crops/
