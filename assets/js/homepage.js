@@ -43,17 +43,7 @@ var formSubmitHandler = function(event) {
     }
 };
 // Spoonacular function call
-// getRecipes(searchRecipe);
-
-// var ingredientContainerEl = document.getElementById("ingredient-container");
-
-// var displayIngredient = function (data,searchFood) {
-//     ingredientContainerEl.textContent = "";
-
-//     for (var i= 1; i<results[i]; i++) {
-//         v
-//     }
-// }
+// for
 
 
 
