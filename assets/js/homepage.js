@@ -89,8 +89,22 @@ var displayRecipe = function(food) {
     //clear out old content
     recipeContainerEl.textContent="";
 
+    for (i=0; i<food.length;i++) {
+        //console.log("This loop is working");
+        // image element
+        var recipeImage = food[i].image;
+        console.log(recipeImage);
+        var recipeImageEl=document.createElement("img");
+        recipeImageEl.setAttribute("src", recipeImage);
+        recipeImageEl.className=""; // classname here
+        recipeContainerEl.appendChild(recipeImageEl);
+
+        // name element
+        
+    }
+
     
-}
+};
 
 
 userFormEl.addEventListener("submit", formSubmitHandler);
