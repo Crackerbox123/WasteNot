@@ -34,7 +34,7 @@ var foodInputEl = document.querySelector("#plant");
 var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element
-    var food = foodInputEl.ariaValueMax.trim();
+    var food = foodInputEl.value.trim();
     console.log(food);
     if (food) {
         getRecipes(food);
@@ -43,7 +43,7 @@ var formSubmitHandler = function(event) {
     }
 };
 // Spoonacular function call
-// for
+
 
 
 
