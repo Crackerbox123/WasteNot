@@ -5,26 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Grow Something</title>
 </head>
 <body>
     <header class="has-text-white has-background-info is-family-sans-serif has-text-centered is-size-1">
         <h1>Grow Something</h1>
     </header>
-    <div>
-        <h5 class="has-text-black is-family-sans-serif">Search for a Plant:</h5>
+    <div class="columns box column is-one-third search-box">
+        <h5 class="has-text-black is-family-sans-serif column is-2">Search for a Plant:</h5>
             <div>
                 <form id="search-form">
-                <input type="text" placeholder="Search for a Plant" aria-label="Search for a Plant" id="plant">
-                    <div>
-                        <button class="button is-info" type="submit">Search!</button>
-                    </div>
+                <input type="text" placeholder="Search for a Plant" aria-label="Search for a Plant" id="plant" class="column input is-normal">
+                    <div class="row">
+                        <button class="button is-info column" type="submit">Search!</button>
+                        <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
+                        <form id="history" class="has-text-black">Example</form>
                 </form>
             </div>
-            <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
-                <form id="history" class="has-text-black">Example</form>
+            
     </div>
-    <div>
+    <div class="card">
         <h3 id="plant-name" class=""></h3>
             <img id="plant-pic" alt="" src="">
             <p id="" class=""></p>
@@ -34,10 +35,6 @@
     </div>
 
     <div id="ingredient-container"></div>
-    
-    <div id="recipe-container"></div>
     <script src="./assets/js/homepage.js"></script>
-
-   
 </body>
 </html>
