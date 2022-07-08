@@ -1,18 +1,21 @@
+// Variables
+var userFormEl = document.querySelector("#search-form");
+
+
+
 // API function pull data from Spoonacular - Search Ingredient Facts
 var searchFood = "banana"
 
 var getIngredient = function(searchFood) {
 
     // returns 5 foods
-    var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=9145364b47d54a31968bed38b03f6572";
+    var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=66860a9f6ecc463a9f11cf2c7e1b8fe0";
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
     });
 });
 };
-
-// Spoonacular function call
 getIngredient(searchFood);
 
 
@@ -22,15 +25,19 @@ var searchRecipe = "mango"
 // Fetch API
 var getRecipes = function(searchRecipe) {
     // returns 5 recipes
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=9145364b47d54a31968bed38b03f6572";
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=66860a9f6ecc463a9f11cf2c7e1b8fe0";
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
     });
 });
 };
+getRecipes(searchFood)
+
 
 var foodInputEl = document.querySelector("#plant");
+
+
 var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element
@@ -42,9 +49,33 @@ var formSubmitHandler = function(event) {
         alert("Please enter a food");
     }
 };
+
+var ingredientContainerEl = document.querySelector("#ingredient-container");
 // Spoonacular function call
 
+var displayIngredients = function(food) {
+    console.log(food);
+    // clear old content
+    ingredientContainerEl.textContent = "";
 
+    // display info
+    for (var i = 1; i<results[i].length; i++) {
+        
+        //  display jpg
+        var itemImage = food.results[i].image;
+        var itemImageEl = document.createElement("img");
+        itemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_250x250/"+itemImage);
+        ingredientContainerEl.appendChild(itemImageEl);
+
+        // display name
+        var itemName = food.results[i].name;
+        var itemNameEl = document.createElement("p");
+        itemImageEl.innerHTML = ""
+    }
+    
+};
+
+userFormEl.addEventListener("submit", formSubmitHandler);
 
 
 
