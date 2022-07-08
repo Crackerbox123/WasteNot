@@ -35,6 +35,12 @@ Spoonacular api:
 
 https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=9145364b47d54a31968bed38b03f6572
 
+Backup api keys:
+
+413a5d33fb1747e7afcd22af53a829db
+
+66860a9f6ecc463a9f11cf2c7e1b8fe0
+
 GrowStuff api:
 
 https://www.growstuff.org/crops/
