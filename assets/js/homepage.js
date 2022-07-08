@@ -30,8 +30,20 @@ var getRecipes = function(searchRecipe) {
 });
 };
 
+var foodInputEl = document.querySelector("#plant");
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    //get value from input element
+    var food = foodInputEl.ariaValueMax.trim();
+    console.log(food);
+    if (food) {
+        getRecipes(food);
+    } else {
+        alert("Please enter a food");
+    }
+};
 // Spoonacular function call
-getRecipes(searchRecipe);
+// for
 
 
 
