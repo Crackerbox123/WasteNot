@@ -30,6 +30,7 @@ var getRecipes = function(searchRecipe) {
     fetch(apiUrl).then(function(response){
     response.json().then(function(data) {
        console.log(data);
+       displayRecipe(data);
     });
 });
 };
@@ -44,7 +45,7 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element
     var food = foodInputEl.value.trim();
-    console.log(food);
+    
     if (food) {
         getRecipes(food);
         getIngredient(food);
@@ -64,7 +65,6 @@ var displayIngredients = function(food) {
     // display info
     for (i = 0; i<food.results.length; i++) {
        
-        console.log("this function is working")
         //  display jpg
         var itemImage = food.results[i].image;
         var itemImageEl = document.createElement("img");
@@ -73,14 +73,25 @@ var displayIngredients = function(food) {
 
         // display name
         var itemName = food.results[i].name;
-        console.log(itemName);
+        //console.log(itemName);
         var itemNameEl = document.createElement("h2");
         itemNameEl.innerHTML = "Name: "+itemName;
-        console.log(ingredientContainerEl);
+        //console.log(ingredientContainerEl);
         ingredientContainerEl.appendChild(itemNameEl);
     }
     
 };
+
+var recipeContainerEl = document.querySelector("#recipe-container");
+
+var displayRecipe = function(food) {
+    console.log(food);
+    //clear out old content
+    recipeContainerEl.textContent="";
+
+    
+}
+
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
