@@ -14,6 +14,7 @@ var getIngredient = function(searchFood) {
     response.json().then(function(data) {
        console.log(data);
        displayIngredients(data);
+       
     });
 });
 };
@@ -31,6 +32,7 @@ var getRecipes = function(searchRecipe) {
     response.json().then(function(data) {
        console.log(data);
        displayRecipe(data);
+       saved(searchFood);
     });
 });
 };
@@ -101,7 +103,7 @@ var displayRecipe = function(food) {
 
         // name element
         var recipeName=food[i].title;
-        console.log(recipeName);
+        //console.log(recipeName);
         var recipeNameEl=document.createElement ("h2");
         recipeNameEl.textContent="Recipe Name: "+recipeName;
         recipeNameEl.className="";  // <--className here
@@ -127,7 +129,7 @@ var displayRecipe = function(food) {
         for (x=0; x<food[i].missedIngredients.length; x++) {
             //console.log("this is working");
             // missed incredient loop( I believe this is unentered ingredients)
-            console.log(food[i].missedIngredients[x].name);
+            //console.log(food[i].missedIngredients[x].name);
             var missedIngNam = food[i].missedIngredients[x].original;
             //console.log(missedIngNam);
             var missedIngNamEl =document.createElement("li");
@@ -137,13 +139,51 @@ var displayRecipe = function(food) {
 
 
         }
-
-
     }
 
-    
-};
+    };
 
+var saved = function(storedFood) {
+
+    var oldFood = JSON.parse(localStorage.getItem("foodItems")) || [];
+    if (oldFood.includes(storedFood)===false){
+        oldFood.unshift(storedFood)
+        localStorage.setItem("foodItems", JSON.stringify(oldFood));
+    }
+
+    console.log(oldFood);
+}
+
+var loadFood = function () {
+    //containerEl.innerHTML="";
+    foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
+    console.log(foodArr);
+        for (i=0; i<9; i++) {
+            var eachFood = foodArr[i];
+            if(eachFood != undefined){
+                foodButtons(eachFood);
+            }
+        }
+}
+
+var foodButtons = function(newEachFood) {
+    var fdBtn = document.createElement("button");
+    fdBtn.innerHTML=newEachFood;
+    console.log(newEachFood);
+    //containerEl.appendChild(fdBtn);
+    fdBtn.className = "" // <----- needs className
+    fdBtn.onlcick=clickAnswer;
+}
+
+function clickAnswer(e) {
+    e.preventDefault;
+    var clickedFood=e.target;
+    console.log(clickedFood.textContent);
+
+    getRecipes(clickedFood.textContent)
+}
+
+loadFood()
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
