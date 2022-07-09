@@ -22,6 +22,7 @@
                 <div class="field">
                     <label class="label">Search for item</label>
                     <div class="control">
+                        <!--search text-->
                       <input class="input" type="text" placeholder="Input item to search for">
                     </div>
                   </div>
@@ -29,8 +30,8 @@
                     <button class="button is-info column" type="submit">Search!</button>
                     <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
                 </div>
-                <div>    
-                    <form id="history" class="has-text-black"></form>
+                <div>  
+                    <div class="has-background is-warning is-fullwidth"></div> <!--Append this div with search history-->
                 </div>
             </form>          
         </div>
@@ -46,10 +47,8 @@
         </div>
     </div>
 
-    <!--container for second search-->
-    <div id="ingredient-container"></div>
+    <!--container for second search will go here-->
 
-    <div id="recipe-container"></div>
     <script src="./assets/js/homepage.js"></script>
 </body>
 </html>
