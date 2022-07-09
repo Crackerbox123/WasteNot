@@ -17,14 +17,20 @@
     <div class="columns is variable is-2 "> <!--container for first search and results-->
 
      <!--container for search box-->   
-    <div class="column box is-one-third has-background-info-light is-auto search-box"> 
-        <h5 class="has-text-black is-family-sans-serif column is-2">Search for a Plant:</h5>
-            <form id="search-form">
-            <input type="text" placeholder="Search for a Plant" aria-label="Search for a Plant" id="plant" class="column input is-normal">
+    <div class="column box is-one-third has-background-info-light search-box"> 
+            <form class="box">
+                <div class="field">
+                    <label class="label">Search for item</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Input item to search for">
+                    </div>
+                  </div>
                 <div class="columns">
                     <button class="button is-info column" type="submit">Search!</button>
                     <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
-                    <form id="history" class="has-text-black">Example</form>
+                </div>
+                <div>    
+                    <form id="history" class="has-text-black"></form>
                 </div>
             </form>          
         </div>
