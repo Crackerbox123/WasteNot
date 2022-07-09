@@ -14,7 +14,7 @@ var getIngredient = function(searchFood) {
     response.json().then(function(data) {
        console.log(data);
        displayIngredients(data);
-       saved(searchFood);
+       
     });
 });
 };
@@ -32,6 +32,7 @@ var getRecipes = function(searchRecipe) {
     response.json().then(function(data) {
        console.log(data);
        displayRecipe(data);
+       saved(searchFood);
     });
 });
 };
@@ -152,6 +153,8 @@ var saved = function(storedFood) {
 
     console.log(oldFood);
 }
+
+
 
 
 userFormEl.addEventListener("submit", formSubmitHandler);
