@@ -14,6 +14,7 @@ var getIngredient = function(searchFood) {
     response.json().then(function(data) {
        console.log(data);
        displayIngredients(data);
+       saved(searchFood);
     });
 });
 };
@@ -137,12 +138,20 @@ var displayRecipe = function(food) {
 
 
         }
-
-
     }
 
-    
-};
+    };
+
+var saved = function(storedFood) {
+
+    var oldFood = JSON.parse(localStorage.getItem("foodItems")) || [];
+    if (oldFood.includes(storedFood)===false){
+        oldFood.unshift(storedFood)
+        localStorage.setItem("foodItems", JSON.stringify(oldFood));
+    }
+
+    console.log(oldFood);
+}
 
 
 userFormEl.addEventListener("submit", formSubmitHandler);
