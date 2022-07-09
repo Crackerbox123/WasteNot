@@ -32,7 +32,7 @@ var getRecipes = function(searchRecipe) {
     response.json().then(function(data) {
        console.log(data);
        displayRecipe(data);
-       saved(searchFood);
+       
     });
 });
 };
@@ -47,10 +47,11 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element
     var food = foodInputEl.value.trim();
-    
+    console.log(food);
     if (food) {
         getRecipes(food);
         getIngredient(food);
+        saved(food);
     } else {
         alert("Please enter a food");
     }
