@@ -1,47 +1,58 @@
 // Variables
 var userFormEl = document.querySelector("#search-form");
-
-
-
+var foodHistoryContainerEl = document.querySelector("#historyContainer");
+//console.log(foodHistoryContainerEl);
+var recipeContainerEl = document.querySelector("#recipe-container");
 // API function pull data from Spoonacular - Search Ingredient Facts
-var searchFood = "banana"
+//var searchFood = "banana"
+var foodInputEl = document.querySelector("#plant");
 
-var getIngredient = function(searchFood) {
+// var getIngredient = function(searchFood) {
 
-    // returns 5 foods
-    var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=854e53810e43467a816b9a7449bf9772";
-    fetch(apiUrl).then(function(response){
-    response.json().then(function(data) {
-       console.log(data);
-       displayIngredients(data);
+//     // returns 5 foods
+//     var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=854e53810e43467a816b9a7449bf9772";
+//     fetch(apiUrl).then(function(response){
+//     response.json().then(function(data) {
+//        console.log(data);
+//        //displayIngredients(data);
        
-    });
-});
-};
+//     });
+// });
+// };
 //getIngredient(searchFood);
 
 
 // API function to pull data from Spoonacular API - Search Recipes FROM ingredients
-var searchRecipe = "mango"
+//var searchRecipe = "mango"
 
 // Fetch API
 var getRecipes = function(searchRecipe) {
     // returns 5 recipes
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=854e53810e43467a816b9a7449bf9772";
+    console.log(searchRecipe);
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=413a5d33fb1747e7afcd22af53a829db";
     fetch(apiUrl).then(function(response){
-    response.json().then(function(data) {
+    if(response.ok) {
+        response.json().then(function(data) {
        console.log(data);
        displayRecipe(data);
-       
+       saved(searchRecipe);
     });
-});
+    } else {
+        alert('Food item not found.');
+    }
+})
+    .catch(function(error) {
+        alert("Unable to connect to Spoonacular");
+    });      
+
 };
+
 //getRecipes(searchFood)
 
 
 
 // Form Submit Handler Logic
-var foodInputEl = document.querySelector("#plant");
+
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -50,47 +61,48 @@ var formSubmitHandler = function(event) {
     console.log(food);
     if (food) {
         getRecipes(food);
-        getIngredient(food);
-        saved(food);
+        //getIngredient(food);
+        //saved(food);
     } else {
         alert("Please enter a food");
     }
 };
 
-var ingredientContainerEl = document.querySelector("#ingredient-container");
-// Spoonacular function call
+// var ingredientContainerEl = document.querySelector("#ingredient-container");
+// // Spoonacular function call
 
-var displayIngredients = function(food) {
-    console.log(food);
-    // clear old content
-    ingredientContainerEl.textContent = "";
+// var displayIngredients = function(food) {
+//     console.log(food);
+//     // clear old content
+//     ingredientContainerEl.textContent = "";
     
-    // display info
-    for (i = 0; i<food.results.length; i++) {
+//     // display info
+//     for (i = 0; i<food.results.length; i++) {
        
-        //  display jpg
-        var itemImage = food.results[i].image;
-        var itemImageEl = document.createElement("img");
-        itemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_100x100/"+itemImage);
-        ingredientContainerEl.appendChild(itemImageEl);
+//         //  display jpg
+//         var itemImage = food.results[i].image;
+//         var itemImageEl = document.createElement("img");
+//         itemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_100x100/"+itemImage);
+//         ingredientContainerEl.appendChild(itemImageEl);
 
-        // display name
-        var itemName = food.results[i].name;
-        //console.log(itemName);
-        var itemNameEl = document.createElement("h2");
-        itemNameEl.innerHTML = "Name: "+itemName;
-        //console.log(ingredientContainerEl);
-        ingredientContainerEl.appendChild(itemNameEl);
-    }
+//         // display name
+//         var itemName = food.results[i].name;
+//         //console.log(itemName);
+//         var itemNameEl = document.createElement("h2");
+//         itemNameEl.innerHTML = "Name: "+itemName;
+//         //console.log(ingredientContainerEl);
+//         ingredientContainerEl.appendChild(itemNameEl);
+//     }
     
-};
+// };
 
-var recipeContainerEl = document.querySelector("#recipe-container");
+
 
 var displayRecipe = function(food) {
     console.log(food);
     //clear out old content
     recipeContainerEl.textContent="";
+    //foodInputEl.value="";
 
     for (i=0; i<food.length;i++) {
         //console.log("This loop is working");
@@ -143,7 +155,7 @@ var displayRecipe = function(food) {
     }
 
     };
-
+//put into local storage
 var saved = function(storedFood) {
 
     var oldFood = JSON.parse(localStorage.getItem("foodItems")) || [];
@@ -154,9 +166,9 @@ var saved = function(storedFood) {
 
     console.log(oldFood);
 }
-
+// load from local storage into button
 var loadFood = function () {
-    //containerEl.innerHTML="";
+    foodHistoryContainerEl.innerHTML="";
     foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
     console.log(foodArr);
         for (i=0; i<9; i++) {
@@ -166,21 +178,22 @@ var loadFood = function () {
             }
         }
 }
-
+// creates buttons
 var foodButtons = function(newEachFood) {
     var fdBtn = document.createElement("button");
     fdBtn.innerHTML=newEachFood;
     console.log(newEachFood);
-    //containerEl.appendChild(fdBtn);
+    foodHistoryContainerEl.appendChild(fdBtn);
     fdBtn.className = "" // <----- needs className
-    fdBtn.onlcick=clickAnswer;
+    fdBtn.onclick=clickAnswer;
 }
-
+// click event to put button value back into search
 function clickAnswer(e) {
     e.preventDefault;
     var clickedFood=e.target;
     console.log(clickedFood.textContent);
-
+    console.log("this button is working");
+    console.log(clickedFood);
     getRecipes(clickedFood.textContent)
 }
 
