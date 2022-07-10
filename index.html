@@ -44,16 +44,16 @@
     </section>
   
 
-    <div class="columns is variable is-2 "> <!--container for first search and results-->
+    <div class="block columns"> <!--container for first search and results-->
 
      <!--container for search box-->   
     <div class="column box is-one-third has-background-info-light search-box"> 
-            <form class="box">
+            <form id="search-form" class="box">
                 <div class="field">
                     <label class="label">Search for item</label>
                     <div class="control">
                         <!--search text-->
-                      <input class="input" type="text" placeholder="Input item to search for">
+                      <input id="plant" class="input" type="text" placeholder="Input item to search for">
                     </div>
                   </div>
                 <div class="columns">
@@ -61,15 +61,16 @@
                     <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
                 </div>
                 <div>  
-                    <div class="has-background is-warning is-fullwidth"></div> <!--Append this div with search history-->
+                    <div id="historyContainer"></div> <!--Append this div with search history-->
                 </div>
             </form>          
         </div>
 
         <!--container for the results-->
-        <div class="column box is-auto has-text-white has-background-info-dark is-family-sans-serif has-text-centered is-size-2">
+        <div id= "recipe-container" class="box">
             <!--append a new div into this section for the results
             One div per result div will get style classes added in JS-->
+         <!--   <div id="recipe-container" class="card"></div> -->
         </div>
     </div>
 
