@@ -155,7 +155,7 @@ var displayRecipe = function(food) {
     }
 
     };
-
+//put into local storage
 var saved = function(storedFood) {
 
     var oldFood = JSON.parse(localStorage.getItem("foodItems")) || [];
@@ -166,7 +166,7 @@ var saved = function(storedFood) {
 
     console.log(oldFood);
 }
-
+// load from local storage into button
 var loadFood = function () {
     foodHistoryContainerEl.innerHTML="";
     foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
@@ -178,7 +178,7 @@ var loadFood = function () {
             }
         }
 }
-
+// creates buttons
 var foodButtons = function(newEachFood) {
     var fdBtn = document.createElement("button");
     fdBtn.innerHTML=newEachFood;
@@ -187,7 +187,7 @@ var foodButtons = function(newEachFood) {
     fdBtn.className = "" // <----- needs className
     fdBtn.onclick=clickAnswer;
 }
-
+// click event to put button value back into search
 function clickAnswer(e) {
     e.preventDefault;
     var clickedFood=e.target;
