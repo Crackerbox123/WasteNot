@@ -36,6 +36,7 @@ var getRecipes = function(searchRecipe) {
        console.log(data);
        displayRecipe(data);
        saved(searchRecipe);
+       loadFood();
     });
     } else {
         alert('Food item not found.');
@@ -56,9 +57,11 @@ var getRecipes = function(searchRecipe) {
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
+    console.log("Why is this running again?")
     //get value from input element
     var food = foodInputEl.value.trim();
     console.log(food);
+
     if (food) {
         getRecipes(food);
         //getIngredient(food);
@@ -98,16 +101,16 @@ var formSubmitHandler = function(event) {
 
 
 
-var displayRecipe = function(food) {
-    console.log(food);
+var displayRecipe = function(data) {
+    console.log(data);
     //clear out old content
     recipeContainerEl.textContent="";
-    //foodInputEl.value="";
+    foodInputEl.value="";
 
-    for (i=0; i<food.length;i++) {
+    for (i=0; i<data.length;i++) {
         //console.log("This loop is working");
         // image element
-        var recipeImage = food[i].image;
+        var recipeImage = data[i].image;
         //console.log(recipeImage);
         var recipeImageEl=document.createElement("img");
         recipeImageEl.setAttribute("src", recipeImage);
@@ -115,7 +118,7 @@ var displayRecipe = function(food) {
         recipeContainerEl.appendChild(recipeImageEl);
 
         // name element
-        var recipeName=food[i].title;
+        var recipeName=data[i].title;
         //console.log(recipeName);
         var recipeNameEl=document.createElement ("h2");
         recipeNameEl.textContent="Recipe Name: "+recipeName;
@@ -128,9 +131,9 @@ var displayRecipe = function(food) {
         recipeUl.className=""; // <--className here for ul
         recipeContainerEl.appendChild(recipeUl);
 
-        for (x=0; x<food[i].usedIngredients.length;x++) {
+        for (x=0; x<data[i].usedIngredients.length;x++) {
             console.log ("this is MF'in working");
-            var usedIngName = food[i].usedIngredients[x].original;
+            var usedIngName = data[i].usedIngredients[x].original;
             var usedIngNameEl = document.createElement("li");
             usedIngNameEl.textContent= usedIngName;
             usedIngNameEl.className=""; // <-- className here
@@ -139,11 +142,11 @@ var displayRecipe = function(food) {
         }
         
         //console.log(food[i].missedIngredients)
-        for (x=0; x<food[i].missedIngredients.length; x++) {
+        for (x=0; x<data[i].missedIngredients.length; x++) {
             //console.log("this is working");
             // missed incredient loop( I believe this is unentered ingredients)
             //console.log(food[i].missedIngredients[x].name);
-            var missedIngNam = food[i].missedIngredients[x].original;
+            var missedIngNam = data[i].missedIngredients[x].original;
             //console.log(missedIngNam);
             var missedIngNamEl =document.createElement("li");
             missedIngNamEl.textContent= missedIngNam;
@@ -171,8 +174,9 @@ var loadFood = function () {
     foodHistoryContainerEl.innerHTML="";
     foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
     console.log(foodArr);
-        for (i=0; i<9; i++) {
+        for (i=0; i <foodArr.length; i++) {
             var eachFood = foodArr[i];
+            console.log(eachFood);
             if(eachFood != undefined){
                 foodButtons(eachFood);
             }
@@ -180,11 +184,13 @@ var loadFood = function () {
 }
 // creates buttons
 var foodButtons = function(newEachFood) {
+    console.log("It's populating the buttons");
     var fdBtn = document.createElement("button");
     fdBtn.innerHTML=newEachFood;
     console.log(newEachFood);
     foodHistoryContainerEl.appendChild(fdBtn);
     fdBtn.className = "" // <----- needs className
+    fdBtn.setAttribute("id","foodButton");
     fdBtn.onclick=clickAnswer;
 }
 // click event to put button value back into search
