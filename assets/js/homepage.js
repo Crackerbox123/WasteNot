@@ -29,7 +29,7 @@ var foodInputEl = document.querySelector("#plant");
 var getRecipes = function(searchRecipe) {
     // returns 5 recipes
     console.log(searchRecipe);
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=413a5d33fb1747e7afcd22af53a829db";
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=66ddd5de554b45bc946bc6143c86952d";
     fetch(apiUrl).then(function(response){
     if(response.ok) {
         response.json().then(function(data) {
@@ -112,23 +112,29 @@ var displayRecipe = function(data) {
         // image element
         var recipeImage = data[i].image;
         //console.log(recipeImage);
+        var recipeImageDivEl=document.createElement("div");
+        recipeImageDivEl.className="card-image";
         var recipeImageEl=document.createElement("img");
         recipeImageEl.setAttribute("src", recipeImage);
-        recipeImageEl.className=""; // <--className here
+        //recipeImageEl.className="image is-1by1"; // <--className here
         recipeContainerEl.appendChild(recipeImageEl);
 
         // name element
         var recipeName=data[i].title;
         //console.log(recipeName);
-        var recipeNameEl=document.createElement ("h2");
+        var recipeCard=document.createElement ("div");
+        recipeCard.className="content";
+        var recipeNameEl=document.createElement ("div");
         recipeNameEl.textContent="Recipe Name: "+recipeName;
-        recipeNameEl.className="";  // <--className here
+        recipeNameEl.className="title is-5";  // <--className here
         recipeContainerEl.appendChild(recipeNameEl);
 
         // ul div created for il's of ingredients
-        var recipeUl=document.createElement("ul");
+        var recipeULDiv=document.createElement ("div");
+        recipeULDiv.className="content";
+        var recipeUl=document.createElement("div");
+        recipeUl.className="content"; // <--className here for ul
         recipeUl.textContent= "Ingredients:";
-        recipeUl.className=""; // <--className here for ul
         recipeContainerEl.appendChild(recipeUl);
 
         for (x=0; x<data[i].usedIngredients.length;x++) {
@@ -136,7 +142,7 @@ var displayRecipe = function(data) {
             var usedIngName = data[i].usedIngredients[x].original;
             var usedIngNameEl = document.createElement("li");
             usedIngNameEl.textContent= usedIngName;
-            usedIngNameEl.className=""; // <-- className here
+            usedIngNameEl.className="li has-background-warning"; // <-- className here
             recipeUl.appendChild(usedIngNameEl);
 
         }
@@ -150,7 +156,7 @@ var displayRecipe = function(data) {
             //console.log(missedIngNam);
             var missedIngNamEl =document.createElement("li");
             missedIngNamEl.textContent= missedIngNam;
-            missedIngNamEl.classname=""; // <-- className here
+            missedIngNamEl.classname="li"; // <-- className here
             recipeUl.appendChild(missedIngNamEl);
 
 
@@ -189,7 +195,7 @@ var foodButtons = function(newEachFood) {
     fdBtn.innerHTML=newEachFood;
     console.log(newEachFood);
     foodHistoryContainerEl.appendChild(fdBtn);
-    fdBtn.className = "" // <----- needs className
+    fdBtn.className = "button is-warning is-medium" // <----- needs className
     fdBtn.setAttribute("id","foodButton");
     fdBtn.onclick=clickAnswer;
 }
@@ -206,6 +212,4 @@ function clickAnswer(e) {
 loadFood()
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-
-
 

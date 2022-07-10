@@ -2,3 +2,10 @@
     position: relative;
     top: 12px;
 }
+#recipe-container {
+    margin-top: 20px;
+}
+
+li {
+    text-align: left;
+}
