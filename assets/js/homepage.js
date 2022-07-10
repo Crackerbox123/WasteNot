@@ -108,6 +108,14 @@ var displayRecipe = function(data) {
     foodInputEl.value="";
 
     for (i=0; i<data.length;i++) {
+
+        var recipeCardDisplay = document.createElement("div");
+        recipeCardDisplay.id = i+1;
+        //var recipeCardDisplay = document.querySelector("#recipe-container");
+
+
+
+
         //console.log("This loop is working");
         // image element
         var recipeImage = data[i].image;
@@ -117,7 +125,7 @@ var displayRecipe = function(data) {
         var recipeImageEl=document.createElement("img");
         recipeImageEl.setAttribute("src", recipeImage);
         //recipeImageEl.className="image is-1by1"; // <--className here
-        recipeContainerEl.appendChild(recipeImageEl);
+        recipeCardDisplay.appendChild(recipeImageEl);
 
         // name element
         var recipeName=data[i].title;
@@ -127,7 +135,7 @@ var displayRecipe = function(data) {
         var recipeNameEl=document.createElement ("div");
         recipeNameEl.textContent="Recipe Name: "+recipeName;
         recipeNameEl.className="title is-5";  // <--className here
-        recipeContainerEl.appendChild(recipeNameEl);
+        recipeCardDisplay.appendChild(recipeNameEl);
 
         // ul div created for il's of ingredients
         var recipeULDiv=document.createElement ("div");
@@ -135,7 +143,9 @@ var displayRecipe = function(data) {
         var recipeUl=document.createElement("div");
         recipeUl.className="content"; // <--className here for ul
         recipeUl.textContent= "Ingredients:";
-        recipeContainerEl.appendChild(recipeUl);
+        recipeCardDisplay.appendChild(recipeUl);
+
+        recipeContainerEl.appendChild(recipeCardDisplay);
 
         for (x=0; x<data[i].usedIngredients.length;x++) {
             console.log ("this is MF'in working");
@@ -144,9 +154,7 @@ var displayRecipe = function(data) {
             usedIngNameEl.textContent= usedIngName;
             usedIngNameEl.className="li has-background-warning"; // <-- className here
             recipeUl.appendChild(usedIngNameEl);
-
-        }
-        
+        } 
         //console.log(food[i].missedIngredients)
         for (x=0; x<data[i].missedIngredients.length; x++) {
             //console.log("this is working");
@@ -158,10 +166,12 @@ var displayRecipe = function(data) {
             missedIngNamEl.textContent= missedIngNam;
             missedIngNamEl.classname="li"; // <-- className here
             recipeUl.appendChild(missedIngNamEl);
-
-
         }
     }
+
+
+
+
 
     };
 //put into local storage
