@@ -8,35 +8,73 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Grow Something</title>
 </head>
+
 <body>
-    <header class="has-text-white has-background-info is-family-sans-serif has-text-centered is-size-1">
-        <h1>Grow Something</h1>
-    </header>
-    <div class="columns box column is-one-third search-box">
-        <h5 class="has-text-black is-family-sans-serif column is-2">Search for a Plant:</h5>
-            <div>
-                <form id="search-form">
-                <input type="text" placeholder="Search for a Plant" aria-label="Search for a Plant" id="plant" class="column input is-normal">
-                    <div class="row">
-                        <button class="button is-info column" type="submit">Search!</button>
-                        <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
-                        <form id="history" class="has-text-black">Example</form>
-                </form>
+    <section class="hero is-success is-medium">
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-head">
+      <header class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item"></a>
+            <span class="navbar-burger" data-target="navbarMenuHeroC">
+            </span>
+          </div>
+          <div id="navbarMenuHeroC" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item is-active">
+                Search First Thing
+              </a>
+              <a class="navbar-item">
+                Search Second Thing
+              </a>
             </div>
-            
+          </div>
+        </div>
+      </header>
     </div>
-    <div class="card">
-        <h3 id="plant-name" class=""></h3>
-            <img id="plant-pic" alt="" src="">
-            <p id="" class=""></p>
-            <p id="" class=""></p>
-            <p id="" class=""></p>
-            <p id="" class=""></p>
+    <p class="title">
+        Search for stuff
+      </p>
+      <p class="subtitle">
+        With this application you can search for a recipe based on ingredients in your fridge or pantry. </p>
+        <p class="subtitle">
+        You can also use it to search for a second thing..... 
+      </p>
+    </section>
+  
+
+    <div class="columns is variable is-2 "> <!--container for first search and results-->
+
+     <!--container for search box-->   
+    <div class="column box is-one-third has-background-info-light search-box"> 
+            <form class="box">
+                <div class="field">
+                    <label class="label">Search for item</label>
+                    <div class="control">
+                        <!--search text-->
+                      <input class="input" type="text" placeholder="Input item to search for">
+                    </div>
+                  </div>
+                <div class="columns">
+                    <button class="button is-info column" type="submit">Search!</button>
+                    <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
+                </div>
+                <div>  
+                    <div class="has-background is-warning is-fullwidth"></div> <!--Append this div with search history-->
+                </div>
+            </form>          
+        </div>
+
+        <!--container for the results-->
+        <div class="column box is-auto has-text-white has-background-info-dark is-family-sans-serif has-text-centered is-size-2">
+            <!--append a new div into this section for the results
+            One div per result div will get style classes added in JS-->
+        </div>
     </div>
 
-    <div id="ingredient-container"></div>
+    <!--container for second search will go here-->
 
-    <div id="recipe-container"></div>
     <script src="./assets/js/homepage.js"></script>
 </body>
 </html>
