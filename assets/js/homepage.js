@@ -6,7 +6,7 @@ var recipeContainerEl = document.querySelector("#recipe-container");
 // API function pull data from Spoonacular - Search Ingredient Facts
 //var searchFood = "banana"
 var foodInputEl = document.querySelector("#plant");
-
+var drinkContainerEl = document.querySelector("#drink-container");
 // var getIngredient = function(searchFood) {
 
 //     // returns 5 foods
@@ -27,7 +27,7 @@ var foodInputEl = document.querySelector("#plant");
 
 // Fetch API
 var getRecipes = function(searchRecipe) {
-    // returns 5 recipes
+    
     console.log(searchRecipe);
     var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&apiKey=66ddd5de554b45bc946bc6143c86952d";
     fetch(apiUrl).then(function(response){
@@ -48,13 +48,56 @@ var getRecipes = function(searchRecipe) {
 
 };
 
+var getDrinkId = function(food) {
+    console.log("The drunk function is working");
+    console.log(food);
+    var apiCocktailUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i="+food;
+    fetch(apiCocktailUrl).then(function(response) {
+       
+        if(response.ok) {
+          response.json().then(function(data) {
+            console.log(data);
+            console.log(data.drinks.length);
+            for  (var i=0; i<data.drinks.length; i++) {
+                 console.log("this if mf'er is working");
+                 var drinkID= data.drinks[i].idDrink;
+                 console.log(drinkID);
+                fullCktailDet(drinkID);
+            }; 
+            
+        });  
+        } else {
+            alert("Error: Food not found");
+        }
+        
+    })
+    .catch(function(error) {
+        alert("Unable to connect");
+   });
+};
 
-
+var fullCktailDet = function (id) {
+    console.log("why am I being sent to another f'in fetch function?");
+    console.log(id);
+    var apiDetailsCocktailUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i="+id;
+    fetch(apiDetailsCocktailUrl).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+              console.log(data);
+              displayDrinkRecipe(data);
+            });  
+        } else {
+            alert("Error: Food not found");
+        }
+        
+    })
+    .catch(function(error) {
+        alert("Unable to connect");  
+    });
+};
 
 
 // Form Submit Handler Logic
-
-
 var formSubmitHandler = function(event) {
     event.preventDefault();
     console.log("Why is this running again?")
@@ -64,6 +107,7 @@ var formSubmitHandler = function(event) {
 
     if (food) {
         getRecipes(food);
+        getDrinkId(food);
         //getIngredient(food);
         //saved(food);
     } else {
@@ -71,33 +115,36 @@ var formSubmitHandler = function(event) {
     }
 };
 
-// var ingredientContainerEl = document.querySelector("#ingredient-container");
-// // Spoonacular function call
 
-// var displayIngredients = function(food) {
-//     console.log(food);
-//     // clear old content
-//     ingredientContainerEl.textContent = "";
-    
-//     // display info
-//     for (i = 0; i<food.results.length; i++) {
-       
-//         //  display jpg
-//         var itemImage = food.results[i].image;
-//         var itemImageEl = document.createElement("img");
-//         itemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_100x100/"+itemImage);
-//         ingredientContainerEl.appendChild(itemImageEl);
+// Spoonacular function call
 
-//         // display name
-//         var itemName = food.results[i].name;
-//         //console.log(itemName);
-//         var itemNameEl = document.createElement("h2");
-//         itemNameEl.innerHTML = "Name: "+itemName;
-//         //console.log(ingredientContainerEl);
-//         ingredientContainerEl.appendChild(itemNameEl);
-//     }
+var displayDrinkRecipe = function(data) {
+    console.log(data);
+    console.log("displaydrinkrecipe is working");
+
+    // clear old content
+    //ingredientContainerEl.textContent = "";
     
-// };
+    // display info
+    for (i = 0; i<data.drinks.length; i++) {
+       console.log("display drink loop is working");
+
+         //  display jpg
+         var drinkItemImage = data.drinks[i].strDrinkThumb;
+         var drinkItemImageEl = document.createElement("img");
+         drinkItemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_100x100/"+itemImage);
+    //     ingredientContainerEl.appendChild(itemImageEl);
+
+    //     // display name
+    //     var itemName = food.results[i].name;
+    //     //console.log(itemName);
+    //     var itemNameEl = document.createElement("h2");
+    //     itemNameEl.innerHTML = "Name: "+itemName;
+    //     //console.log(ingredientContainerEl);
+    //     ingredientContainerEl.appendChild(itemNameEl);
+    };
+    
+};
 
 
 
@@ -183,13 +230,13 @@ var saved = function(storedFood) {
         localStorage.setItem("foodItems", JSON.stringify(oldFood));
     }
 
-    console.log(oldFood);
+    //console.log(oldFood);
 }
 // load from local storage into button
 var loadFood = function () {
     foodHistoryContainerEl.innerHTML="";
     foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
-    console.log(foodArr);
+    //console.log(foodArr);
         for (i=0; i <foodArr.length; i++) {
             var eachFood = foodArr[i];
             console.log(eachFood);
@@ -200,7 +247,7 @@ var loadFood = function () {
 }
 // creates buttons
 var foodButtons = function(newEachFood) {
-    console.log("It's populating the buttons");
+    //console.log("It's populating the buttons");
     var fdBtn = document.createElement("button");
     fdBtn.innerHTML=newEachFood;
     console.log(newEachFood);
@@ -217,6 +264,7 @@ function clickAnswer(e) {
     console.log("this button is working");
     console.log(clickedFood);
     getRecipes(clickedFood.textContent)
+    getDrinkId(clickedFood.textContent)
 }
 
 loadFood()
