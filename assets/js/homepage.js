@@ -7,23 +7,6 @@ var recipeContainerEl = document.querySelector("#recipe-container");
 //var searchFood = "banana"
 var foodInputEl = document.querySelector("#plant");
 var drinkContainerEl = document.querySelector("#drink-container");
-// var getIngredient = function(searchFood) {
-
-//     // returns 5 foods
-//     var apiUrl = "https://api.spoonacular.com/food/ingredients/search?query=" + searchFood + "&number=5&sort=calories&sortDirection=desc&apiKey=854e53810e43467a816b9a7449bf9772";
-//     fetch(apiUrl).then(function(response){
-//     response.json().then(function(data) {
-//        console.log(data);
-//        //displayIngredients(data);
-       
-//     });
-// });
-// };
-//getIngredient(searchFood);
-
-
-// API function to pull data from Spoonacular API - Search Recipes FROM ingredients
-//var searchRecipe = "mango"
 
 // Fetch API
 var getRecipes = function(searchRecipe) {
@@ -123,7 +106,7 @@ var displayDrinkRecipe = function(data) {
     console.log("displaydrinkrecipe is working");
 
     // clear old content
-    //ingredientContainerEl.textContent = "";
+    drinkContainerEl.textContent = "";
     
     // display info
     for (i = 0; i<data.drinks.length; i++) {
@@ -132,7 +115,7 @@ var displayDrinkRecipe = function(data) {
          //  display jpg
          var drinkItemImage = data.drinks[i].strDrinkThumb;
          var drinkItemImageEl = document.createElement("img");
-         drinkItemImageEl.setAttribute("src", drinkItemImage);
+         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class
          drinkContainerEl.appendChild(drinkItemImageEl);
 
          // display name
@@ -140,13 +123,18 @@ var displayDrinkRecipe = function(data) {
          console.log(drinkItemName);
          var drinkItemNameEl = document.createElement("h2");
          drinkItemNameEl.innerHTML = "Name: "+drinkItemName;
+         drinkItemImageEl.className = ""  // <--- Classname here
          drinkContainerEl.appendChild(drinkItemNameEl);
 
          //display ingredients
-        //  var ingredient = "strIngredient"+i
-        //  if (i=0;ingredient!=null,i++) { 
-            
-        //  }
+            for (x=0; x<16; x++) {
+                
+                var drinkIngredientString = "data.drinks[i].strIngredient"+x;
+                console.log(drinkIngredientString);
+                var drinkIngredient = drinkIngredientString
+                //console.log(drinkIngredient);
+            }
+         
     };
     
 };
