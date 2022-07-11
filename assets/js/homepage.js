@@ -29,7 +29,7 @@ var foodInputEl = document.querySelector("#plant");
 var getRecipes = function(searchRecipe) {
     // returns 5 recipes
     console.log(searchRecipe);
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&number=5&apiKey=66ddd5de554b45bc946bc6143c86952d";
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&apiKey=66ddd5de554b45bc946bc6143c86952d";
     fetch(apiUrl).then(function(response){
     if(response.ok) {
         response.json().then(function(data) {
@@ -48,7 +48,7 @@ var getRecipes = function(searchRecipe) {
 
 };
 
-//getRecipes(searchFood)
+
 
 
 
