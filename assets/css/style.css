@@ -7,9 +7,9 @@
 }
 
 .recipe-container {
-    position: relative;
-    top: 12px;
-    left: -450px;
+    position: absolute;
+    top: 175px;
+    left: 525px;
 }
 
 li {
@@ -17,8 +17,8 @@ li {
 }
 
 .history-card {
-    position: relative;
-    top: 200px;
-    left: -500px;
+    position: absolute;
+    top: 375px;
+    left: 0px;
 
 }
