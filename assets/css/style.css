@@ -6,6 +6,11 @@
     margin-top: 20px;
 }
 
+.recipe-container {
+    position: relative;
+    top: 12px;
+}
+
 li {
     text-align: left;
 }
