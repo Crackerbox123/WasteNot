@@ -12,7 +12,7 @@ var drinkContainerEl = document.querySelector("#drink-container");
 var getRecipes = function(searchRecipe) {
     
     console.log(searchRecipe);
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&apiKey=66ddd5de554b45bc946bc6143c86952d";
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&c4dc6f6a40554f4a82ad6d7f3ad7b739";
     fetch(apiUrl).then(function(response){
     if(response.ok) {
         response.json().then(function(data) {
