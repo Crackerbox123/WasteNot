@@ -9,6 +9,7 @@
 .recipe-container {
     position: relative;
     top: 12px;
+    left: -450px;
 }
 
 li {
