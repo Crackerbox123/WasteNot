@@ -47,7 +47,7 @@
     <div class="block columns"> <!--container for first search and results-->
 
      <!--container for search box-->   
-    <div class="column box is-one-third has-background-info-light search-box"> 
+    <div class="column box is-one-third has-background-light search-box"> 
             <form id="search-form" class="box">
                 <div class="field">
                     <label class="label">Search for item</label>
@@ -59,14 +59,16 @@
                 <div class="columns is-full">
                     <button class="button is-info column" type="submit">Search!</button>
                 </div>
-                <div class="columns is-full">
-                  <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
-                </div>
                 <div>  
-                    <div id="historyContainer"></div> <!--Append this div with search history-->
                 </div>
             </form>          
         </div>
+
+        <div class="column box is-one-third has-background-info-light history-card">
+          <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
+          <div id="historyContainer"></div> <!--Append this div with search history-->
+        </div>
+
 
         <!--container for the results-->
         <div id= "recipe-container search-first-thing" class="box recipe-container">

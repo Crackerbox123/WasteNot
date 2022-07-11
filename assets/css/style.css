@@ -14,3 +14,10 @@
 li {
     text-align: left;
 }
+
+.history-card {
+    position: relative;
+    top: 200px;
+    left: -500px;
+
+}
