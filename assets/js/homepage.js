@@ -111,7 +111,7 @@ var displayDrinkRecipe = function(data) {
     // display info
     for (i = 0; i<data.drinks.length; i++) {
        console.log("display drink loop is working");
-
+       
          //  display jpg
          var drinkItemImage = data.drinks[i].strDrinkThumb;
          var drinkItemImageEl = document.createElement("img");
@@ -126,19 +126,35 @@ var displayDrinkRecipe = function(data) {
          drinkItemImageEl.className = ""  // <--- Classname here
          drinkContainerEl.appendChild(drinkItemNameEl);
 
+         //display instructions
+         var drinkInstructions=data.drinks[i].strInstructions;
+         var drinkInstructionsEl=document.createElement("li");
+         console.log(drinkInstructions);
+         drinkInstructionsEl.className = "" // <-- Classname here
+         drinkInstructionsEl.innerHTML = drinkInstructions;
+         drinkContainerEl.appendChild(drinkInstructionsEl);
+
+        var drinkIngredientStringUl=document.createElement('ul');
+        drinkContainerEl.appendChild(drinkIngredientStringUl);
          //display ingredients
-            // for (x=0; x<16; x++) {
+            for (x=0; x<16; x++) {
+                if (data.drinks[i][`strIngredient${x}`] != null) {
+                    var drinkIngredientStringEl=document.createElement("li");
+                    console.log(data.drinks[i][`strIngredient${x}`]);
+                    drinkIngredientStringEl.className = "" //< ----classname
+                    drinkIngredientStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] + ': ' +data.drinks[i][`strIngredient${x}`];
+                    drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
                 
-            //     var drinkIngredientString = "data.drinks[i].strIngredient"+x;
-            //     console.log(drinkIngredientString);
-            //     var drinkIngredient = drinkIngredientString
-                //console.log(drinkIngredient);
-            }
+                
+               
+                
+                
+            };
          
     };
     
-//};
-
+};
+};
 
 
 var displayRecipe = function(data) {
