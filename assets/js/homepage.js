@@ -127,11 +127,11 @@ var displayDrinkRecipe = function(data) {
          drinkContainerEl.appendChild(drinkItemNameEl);
 
          //display ingredients
-            for (x=0; x<16; x++) {
+            // for (x=0; x<16; x++) {
                 
-                var drinkIngredientString = "data.drinks[i].strIngredient"+x;
-                console.log(drinkIngredientString);
-                var drinkIngredient = drinkIngredientString
+            //     var drinkIngredientString = "data.drinks[i].strIngredient"+x;
+            //     console.log(drinkIngredientString);
+            //     var drinkIngredient = drinkIngredientString
                 //console.log(drinkIngredient);
             }
          
