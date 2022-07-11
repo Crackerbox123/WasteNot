@@ -132,8 +132,10 @@ var displayDrinkRecipe = function(data) {
          //  display jpg
          var drinkItemImage = data.drinks[i].strDrinkThumb;
          var drinkItemImageEl = document.createElement("img");
-         drinkItemImageEl.setAttribute("src", "https://spoonacular.com/cdn/ingredients_100x100/"+itemImage);
-    //     ingredientContainerEl.appendChild(itemImageEl);
+         drinkItemImageEl.setAttribute("src", drinkItemImage);
+         drinkContainerEl.appendChild(drinkItemImageEl);
+
+         
 
     //     // display name
     //     var itemName = food.results[i].name;
