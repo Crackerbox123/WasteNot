@@ -135,15 +135,18 @@ var displayDrinkRecipe = function(data) {
          drinkItemImageEl.setAttribute("src", drinkItemImage);
          drinkContainerEl.appendChild(drinkItemImageEl);
 
-         
+         // display name
+         var drinkItemName = data.drinks[i].strDrink;
+         console.log(drinkItemName);
+         var drinkItemNameEl = document.createElement("h2");
+         drinkItemNameEl.innerHTML = "Name: "+drinkItemName;
+         drinkContainerEl.appendChild(drinkItemNameEl);
 
-    //     // display name
-    //     var itemName = food.results[i].name;
-    //     //console.log(itemName);
-    //     var itemNameEl = document.createElement("h2");
-    //     itemNameEl.innerHTML = "Name: "+itemName;
-    //     //console.log(ingredientContainerEl);
-    //     ingredientContainerEl.appendChild(itemNameEl);
+         //display ingredients
+        //  var ingredient = "strIngredient"+i
+        //  if (i=0;ingredient!=null,i++) { 
+            
+        //  }
     };
     
 };
