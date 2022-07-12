@@ -158,6 +158,9 @@ var displayDrinkRecipe = function(data) {
          drinkCardDisplay.appendChild(drinkItemNameEl);
 
          //display instructions
+        var drinkIngredientStringUl=document.createElement('ul');
+        drinkCardDisplay.appendChild(drinkIngredientStringUl);
+
          var drinkInstructions=data.drinks[i].strInstructions;
          var drinkInstructionsEl=document.createElement("li");
          //console.log(drinkInstructions);
@@ -165,8 +168,7 @@ var displayDrinkRecipe = function(data) {
          drinkInstructionsEl.innerHTML = drinkInstructions;
          drinkCardDisplay.appendChild(drinkInstructionsEl);
 
-        var drinkIngredientStringUl=document.createElement('ul');
-        drinkCardDisplay.appendChild(drinkIngredientStringUl);
+        
 
         drinkContainerEl.appendChild(drinkCardDisplay);
          //display ingredients 
