@@ -6,35 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Grow Something</title>
+    <title>Eat and Drink Stuff</title>
 </head>
 
 <body>
     <section class="hero is-success is-medium">
     <!-- Hero head: will stick at the top -->
     <div class="hero-head">
-      <header class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a class="navbar-item"></a>
-            <span class="navbar-burger" data-target="navbarMenuHeroC">
-            </span>
-          </div>
-          <div id="navbarMenuHeroC" class="navbar-menu">
-            <div class="navbar-end">
-              <a class="navbar-item is-active" href="#search-first-thing">
-                Search First Thing
-              </a>
-              <a class="navbar-item" href="#search-second-thing">
-                Search Second Thing
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
     </div>
     <p class="title">
-        Search for stuff
+        Search for Stuff
       </p>
       <p class="subtitle">
         With this application you can search for a recipe based on ingredients in your fridge or pantry. </p>
@@ -44,10 +25,11 @@
     </section>
   
 
-    <div class="block columns"> <!--container for first search and results-->
+    <div class=""> <!--container for first search and results-->
 
+<div class="wrapper">
      <!--container for search box-->   
-    <div class="column box is-one-third has-background-light search-box"> 
+    <div class="has-background-light search-box"> 
             <form id="search-form" class="box">
                 <div class="field">
                     <label class="label">Search for item</label>
@@ -56,31 +38,33 @@
                       <input id="plant" class="input" type="text" placeholder="Input item to search for">
                     </div>
                   </div>
-                <div class="columns is-full">
-                    <button class="button is-info column" type="submit">Search!</button>
+                <div class="">
+                    <button class="button is-info" type="submit">Search!</button>
                 </div>
                 <div>  
                 </div>
             </form>          
         </div>
 
-        <div class="column box is-one-third has-background-white history-card">
+        <div class="has-background-white history-card">
           <button class="button has-background-danger has-text-white" type="button" id="clear-history">Clear History</button>
           <div id="historyContainer"></div> <!--Append this div with search history-->
         </div>
 
 
         <!--container for the results-->
-        <div id= "recipe-container search-first-thing" class="box recipe-container">
+        <div id= "recipe-container search-first-thing" class="recipe-container">
             <!--append a new div into this section for the results
             One div per result div will get style classes added in JS-->
-         <div id="recipe-container" class="card"></div>
+         <div id="recipe-container" class=""></div>
         </div>
     </div>
 
     <!--container for second search will go here-->
         <div id= "drink-container search-second-thing"></div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/homepage.js"></script>
 </body>
 </html>

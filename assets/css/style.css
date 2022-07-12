@@ -1,16 +1,11 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+}
 .search-box {
     position: relative;
     top: 12px;
-}
-
-#recipe-container {
-    margin-top: 20px;
-}
-
-.recipe-container {
-    position: absolute;
-    top: 175px;
-    left: 525px;
 }
 
 li {
