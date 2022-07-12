@@ -132,15 +132,23 @@ var displayDrinkRecipe = function(data) {
         drinkCardDisplay.appendChild(drinkIngredientStringUl);
 
         drinkContainerEl.appendChild(drinkCardDisplay);
-         //display ingredients
+         //display ingredients 
             for (x=0; x<16; x++) {
+                if (data.drinks[i][`strMeasure${x}`] != null) {
+                    var drinkMeasureStringEl=document.createElement("li");
+                    console.log(data.drinks[i][`strMeasure${x}`]);
+                    drinkMeasureStringEl.className = "" //< ----classname
+                    drinkMeasureStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] +": ";
+                    drinkIngredientStringUl.appendChild(drinkMeasureStringEl);
+            };      
+
                 if (data.drinks[i][`strIngredient${x}`] != null) {
                     var drinkIngredientStringEl=document.createElement("li");
                     console.log(data.drinks[i][`strIngredient${x}`]);
                     drinkIngredientStringEl.className = "" //< ----classname
-                    drinkIngredientStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] + ': ' +data.drinks[i][`strIngredient${x}`];
+                    drinkIngredientStringEl.innerHTML = data.drinks[i][`strIngredient${x}`];
                     drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
-            };      
+                }
     };  
 };
 };
