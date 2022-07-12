@@ -7,6 +7,7 @@ var recipeContainerEl = document.querySelector("#recipe-container");
 //var searchFood = "banana"
 var foodInputEl = document.querySelector("#plant");
 var drinkContainerEl = document.querySelector("#drink-container");
+var clearHistoryEl = document.querySelector("#clear-history");
 
 // Fetch API
 var getRecipes = function(searchRecipe) {
@@ -276,7 +277,19 @@ function clickAnswer(e) {
     getDrinkId(clickedFood.textContent)
 }
 
+
+// clear search historu
+var clearHistory = function() {
+
+    localStorage.clear();
+
+    loadFood();
+
+};
+
+
 loadFood()
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
+clearHistoryEl.addEventListener("click", clearHistory);
