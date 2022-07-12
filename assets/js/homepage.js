@@ -4,7 +4,7 @@ var foodHistoryContainerEl = document.querySelector("#historyContainer");
 
 var recipeContainerEl = document.querySelector("#recipe-container");
 // API function pull data from Spoonacular - Search Ingredient Facts
-var foodInputEl = document.querySelector("#plant");
+var foodInputEl = document.querySelector("#food");
 var drinkContainerEl = document.querySelector("#drink-container");
 
 console.log(drinkContainerEl);

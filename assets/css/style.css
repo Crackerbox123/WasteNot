@@ -20,6 +20,10 @@ li {
     margin: 10px;
 }
 
-.line-2 {
-    margin-top: -10px
+.logo {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    right: 50px;
+    top: -25px;
 }
