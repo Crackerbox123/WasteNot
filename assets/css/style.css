@@ -20,7 +20,6 @@ li {
     margin: 10px;
 }
 
-.line-2-hero {
-    position: absolute;
-    top: -10px;
+.line-2 {
+    margin-top: -10px
 }
