@@ -12,7 +12,9 @@ console.log(drinkContainerEl);
 var clearHistoryEl = document.querySelector("#clear-history");
 console.log(foodInputEl)
 
-var modal = document.getElementById("modal-js-example");
+var modal = document.getElementById("modal-js-food");
+var modalConnection =  document.getElementById("modal-js-connection");
+var close = document.getElementsByClassName('modal-close')[0];
 
 // Fetch API
 var getRecipes = function(searchRecipe) {
@@ -29,15 +31,15 @@ var getRecipes = function(searchRecipe) {
     });
     } else {
         //alert('Food item not found.');
-        var foodModal = function() {
-            modal.style.display= "block";
+        
             foodModal();
             console.log("food isn't found");
-        }
+        
     }
 })
     .catch(function(error) {
-        alert("Unable to connect to Spoonacular");
+        //alert("Unable to connect to Spoonacular");
+        connectionModal();
     });      
 
 };
@@ -56,12 +58,14 @@ var getDrinkId = function(food) {
             
         });  
         } else {
-            alert("Error: Food not found");
+            //alert("Error: Food not found");
+            foodModal();
         }
         
     })
     .catch(function(error) {
-        alert("Unable to connect");
+        //alert("Unable to connect");
+        connectionModal();
    });
 };
 
@@ -73,13 +77,14 @@ var fullCktailDet = function (id) {
               displayDrinkRecipe(data);
             });  
         } else {
-            alert("Error: Food not found");
-            
+            //alert("Error: Food not found");
+            foodModal();
         }
         
     })
     .catch(function(error) {
-        alert("Unable to connect");  
+        //alert("Unable to connect"); 
+        connectionModal(); 
     });
 };
 
@@ -102,19 +107,28 @@ var formSubmitHandler = function(event) {
             
     }
 };
+
+//modal functions
 var foodModal = function() {
     modal.style.display= "block";
-    //foodModal();
-    
-}
+      
+};
+
 close.onclick = function() {
     modal.style.display = "none";
-}
+};
+
+
 window.onclick=function(event) {
     if(event.target.className == 'modal-background') {
         modal.style.display = 'none'
     }
-}
+};
+
+var connectionModal= function () {
+    modal.style.display="block";
+};
+
 // Spoonacular function call
 
 var displayDrinkRecipe = function(data) {
