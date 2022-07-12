@@ -46,11 +46,14 @@ var getRecipes = function(searchRecipe) {
 
 var getDrinkId = function(food) {
     console.log(food);
+    
     var apiCocktailUrl ='https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + food;
     fetch(apiCocktailUrl).then(function(response) {
-       
+        
         if(response.ok) {
+            drinkContainerEl.innerHTML = ``;
           response.json().then(function(data) {
+            console.log(data.drinks.length)
             for  (var i=0; i<data.drinks.length; i++) {
                  var drinkID= data.drinks[i].idDrink;
                 fullCktailDet(drinkID);
@@ -64,7 +67,7 @@ var getDrinkId = function(food) {
         
     })
     .catch(function(error) {
-        //alert("Unable to connect");
+    //  alert("Unable to connect");
         connectionModal();
    });
 };
@@ -94,6 +97,7 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element
     var food = foodInputEl.value.trim();
+   
     if (food) {
         getRecipes(food);
         getDrinkId(food);
@@ -103,15 +107,14 @@ var formSubmitHandler = function(event) {
         //alert("Please enter a food");
         console.log("food isn't found");
         
-            foodModal();
+         foodModal();
             
     }
 };
 
 //modal functions
 var foodModal = function() {
-    modal.style.display= "block";
-      
+    modal.style.display= "block";     
 };
 
 close.onclick = function() {
@@ -133,16 +136,17 @@ var connectionModal= function () {
 
 var displayDrinkRecipe = function(data) {
 
-    // clear old content
-    drinkContainerEl.textContent = "";
+ 
     
     // display info
+    
     for (i = 0; i<data.drinks.length; i++) {
+
        console.log("display drink loop is working");
 
        var drinkCardDisplay = document.createElement("div");
         drinkCardDisplay.id = i+1;
-       
+        
          //  display jpg
          var drinkItemImage = data.drinks[i].strDrinkThumb;
          var drinkItemImageEl = document.createElement("img");
@@ -151,7 +155,7 @@ var displayDrinkRecipe = function(data) {
 
          // display name
          var drinkItemName = data.drinks[i].strDrink;
-         console.log(drinkItemName);
+        //  console.log(drinkItemName);
          var drinkItemNameEl = document.createElement("h2");
          drinkItemNameEl.innerHTML = "Name: "+drinkItemName;
          drinkItemImageEl.className = ""  // <--- Classname here
@@ -175,7 +179,7 @@ var displayDrinkRecipe = function(data) {
             for (x=0; x<16; x++) {
                 if (data.drinks[i][`strMeasure${x}`] != null) {
                     var drinkMeasureStringEl=document.createElement("li");
-                    console.log(data.drinks[i][`strMeasure${x}`]);
+                    // console.log(data.drinks[i][`strMeasure${x}`]);
                     drinkMeasureStringEl.className = "" //< ----classname
                     drinkMeasureStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] +": ";
                     drinkIngredientStringUl.appendChild(drinkMeasureStringEl);
@@ -183,7 +187,7 @@ var displayDrinkRecipe = function(data) {
 
                 if (data.drinks[i][`strIngredient${x}`] != null) {
                     var drinkIngredientStringEl=document.createElement("li");
-                    console.log(data.drinks[i][`strIngredient${x}`]);
+                    // console.log(data.drinks[i][`strIngredient${x}`]);
                     drinkIngredientStringEl.className = "" //< ----classname
                     drinkIngredientStringEl.innerHTML = data.drinks[i][`strIngredient${x}`];
                     drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
@@ -232,7 +236,7 @@ var displayRecipe = function(data) {
         recipeContainerEl.appendChild(recipeCardDisplay);
 
         for (x=0; x<data[i].usedIngredients.length;x++) {
-            console.log ("this is MF'in working");
+            // console.log ("this is MF'in working");
             var usedIngName = data[i].usedIngredients[x].original;
             var usedIngNameEl = document.createElement("li");
             usedIngNameEl.textContent= usedIngName;
@@ -269,7 +273,7 @@ var loadFood = function () {
     foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
         for (i=0; i <foodArr.length; i++) {
             var eachFood = foodArr[i];
-            console.log(eachFood);
+            // console.log(eachFood);
             if(eachFood != undefined){
                 foodButtons(eachFood);
             }
