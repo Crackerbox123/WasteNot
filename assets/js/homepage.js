@@ -12,7 +12,7 @@ var drinkContainerEl = document.querySelector("#drink-container");
 var getRecipes = function(searchRecipe) {
     
     console.log(searchRecipe);
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchRecipe + "&c4dc6f6a40554f4a82ad6d7f3ad7b739";
+    var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + searchRecipe + '&apiKey=9145364b47d54a31968bed38b03f6572';
     fetch(apiUrl).then(function(response){
     if(response.ok) {
         response.json().then(function(data) {
@@ -34,7 +34,7 @@ var getRecipes = function(searchRecipe) {
 var getDrinkId = function(food) {
     console.log("The drunk function is working");
     console.log(food);
-    var apiCocktailUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i="+food;
+    var apiCocktailUrl ='https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + food;
     fetch(apiCocktailUrl).then(function(response) {
        
         if(response.ok) {
@@ -62,7 +62,7 @@ var getDrinkId = function(food) {
 var fullCktailDet = function (id) {
     console.log("why am I being sent to another f'in fetch function?");
     console.log(id);
-    var apiDetailsCocktailUrl = "https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i="+id;
+    var apiDetailsCocktailUrl = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=' + id;
     fetch(apiDetailsCocktailUrl).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
@@ -106,7 +106,7 @@ var displayDrinkRecipe = function(data) {
     console.log("displaydrinkrecipe is working");
 
     // clear old content
-    drinkContainerEl.textContent = "";
+    //drinkContainerEl.textContent = "";
     
     // display info
     for (i = 0; i<data.drinks.length; i++) {
