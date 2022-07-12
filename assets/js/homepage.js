@@ -6,8 +6,10 @@ var recipeContainerEl = document.querySelector("#recipe-container");
 // API function pull data from Spoonacular - Search Ingredient Facts
 //var searchFood = "banana"
 var foodInputEl = document.querySelector("#plant");
-var drinkContainerEl = document.querySelector("#drink-container");
+var drinkContainerEl = document.querySelector("#drink-Container");
+console.log(drinkContainerEl);
 var clearHistoryEl = document.querySelector("#clear-history");
+console.log(clearHistoryEl);
 
 // Fetch API
 var getRecipes = function(searchRecipe) {
@@ -117,8 +119,10 @@ var displayDrinkRecipe = function(data) {
          var drinkItemImage = data.drinks[i].strDrinkThumb;
          var drinkItemImageEl = document.createElement("img");
          drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class
+          console.log(drinkItemImageEl);
+        console.log(drinkContainerEl);
          drinkContainerEl.appendChild(drinkItemImageEl);
-
+        
          // display name
          var drinkItemName = data.drinks[i].strDrink;
          console.log(drinkItemName);
