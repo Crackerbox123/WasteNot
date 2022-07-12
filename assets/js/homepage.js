@@ -12,6 +12,8 @@ console.log(drinkContainerEl);
 var clearHistoryEl = document.querySelector("#clear-history");
 console.log(foodInputEl)
 
+var modal = document.getElementById("modal-js-example");
+
 // Fetch API
 var getRecipes = function(searchRecipe) {
     
@@ -26,7 +28,12 @@ var getRecipes = function(searchRecipe) {
        loadFood();
     });
     } else {
-        alert('Food item not found.');
+        //alert('Food item not found.');
+        var foodModal = function() {
+            modal.style.display= "block";
+            foodModal();
+            console.log("food isn't found");
+        }
     }
 })
     .catch(function(error) {
@@ -67,6 +74,7 @@ var fullCktailDet = function (id) {
             });  
         } else {
             alert("Error: Food not found");
+            
         }
         
     })
@@ -87,11 +95,26 @@ var formSubmitHandler = function(event) {
         //getIngredient(food);
         //saved(food);
     } else {
-        alert("Please enter a food");
+        //alert("Please enter a food");
+        console.log("food isn't found");
+        
+            foodModal();
+            
     }
 };
-
-
+var foodModal = function() {
+    modal.style.display= "block";
+    //foodModal();
+    
+}
+close.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick=function(event) {
+    if(event.target.className == 'modal-background') {
+        modal.style.display = 'none'
+    }
+}
 // Spoonacular function call
 
 var displayDrinkRecipe = function(data) {
