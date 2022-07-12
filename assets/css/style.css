@@ -18,5 +18,9 @@ li {
     left: 0px;
     padding: 10px;
     margin: 10px;
+}
 
+.line-2-hero {
+    position: absolute;
+    top: -10px;
 }
