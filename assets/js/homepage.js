@@ -149,26 +149,31 @@ var displayDrinkRecipe = function(data) {
         
          //  display jpg
          var drinkItemImage = data.drinks[i].strDrinkThumb;
+         var drinkImageDivEl=document.createElement("div");
+         drinkImageDivEl.className="card-image";
          var drinkItemImageEl = document.createElement("img");
-         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class
+         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class - yes, class = "image is-1by1"
          drinkCardDisplay.appendChild(drinkItemImageEl);
+
 
          // display name
          var drinkItemName = data.drinks[i].strDrink;
+         var drinkCard=document.createElement ("div");
+         drinkCard.className="content";
         //  console.log(drinkItemName);
-         var drinkItemNameEl = document.createElement("h2");
-         drinkItemNameEl.innerHTML = "Name: "+drinkItemName;
-         drinkItemImageEl.className = ""  // <--- Classname here
+         var drinkItemNameEl = document.createElement("div");
+         drinkItemNameEl.textContent = "Drink Recipe Name: "+drinkItemName;
+         drinkItemNameEl.className = "title is-5"  // <--- Classname here
          drinkCardDisplay.appendChild(drinkItemNameEl);
 
          //display instructions
-        var drinkIngredientStringUl=document.createElement('ul');
+        var drinkIngredientStringUl=document.createElement('div');
         drinkCardDisplay.appendChild(drinkIngredientStringUl);
 
          var drinkInstructions=data.drinks[i].strInstructions;
-         var drinkInstructionsEl=document.createElement("li");
+         var drinkInstructionsEl=document.createElement("div");
          //console.log(drinkInstructions);
-         drinkInstructionsEl.className = "" // <-- Classname here
+         drinkInstructionsEl.className = "content" // <-- Classname here
          drinkInstructionsEl.innerHTML = drinkInstructions;
          drinkCardDisplay.appendChild(drinkInstructionsEl);
 
@@ -178,17 +183,17 @@ var displayDrinkRecipe = function(data) {
          //display ingredients 
             for (x=0; x<16; x++) {
                 if (data.drinks[i][`strMeasure${x}`] != null) {
-                    var drinkMeasureStringEl=document.createElement("li");
+                    var drinkMeasureStringEl=document.createElement("p");
                     // console.log(data.drinks[i][`strMeasure${x}`]);
-                    drinkMeasureStringEl.className = "" //< ----classname
+                    drinkMeasureStringEl.className = "content" //< ----classname
                     drinkMeasureStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] +": ";
                     drinkIngredientStringUl.appendChild(drinkMeasureStringEl);
             };      
 
                 if (data.drinks[i][`strIngredient${x}`] != null) {
-                    var drinkIngredientStringEl=document.createElement("li");
+                    var drinkIngredientStringEl=document.createElement("p");
                     // console.log(data.drinks[i][`strIngredient${x}`]);
-                    drinkIngredientStringEl.className = "" //< ----classname
+                    drinkIngredientStringEl.className = "content" //< ----classname
                     drinkIngredientStringEl.innerHTML = data.drinks[i][`strIngredient${x}`];
                     drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
                 }
