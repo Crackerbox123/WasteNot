@@ -12,6 +12,10 @@ li {
     text-align: left;
 }
 
+img {
+    width: 50%;
+}
+
 .history-card {
     position: absolute;
     top: 320px;

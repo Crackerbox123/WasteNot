@@ -152,7 +152,7 @@ var displayDrinkRecipe = function(data) {
          var drinkImageDivEl=document.createElement("div");
          drinkImageDivEl.className="card-image";
          var drinkItemImageEl = document.createElement("img");
-         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class - yes, class = "image is-1by1"
+         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class - no
          drinkCardDisplay.appendChild(drinkItemImageEl);
 
 
