@@ -20,7 +20,7 @@ var close = document.getElementsByClassName('modal-close')[0];
 var getRecipes = function(searchRecipe) {
     
     //console.log(searchRecipe);
-    var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + searchRecipe + '&apiKey=9145364b47d54a31968bed38b03f6572';
+    var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + searchRecipe + '&apiKey=66ddd5de554b45bc946bc6143c86952d';
     fetch(apiUrl).then(function(response){
     if(response.ok) {
         response.json().then(function(data) {
@@ -134,7 +134,7 @@ var connectionModal= function () {
 var displayDrinkRecipe = function(data) {
 
     // clear old content
-    //drinkContainerEl.textContent = "";
+    drinkContainerEl.textContent = "";
     
     // display info
     for (i = 0; i<data.drinks.length; i++) {
