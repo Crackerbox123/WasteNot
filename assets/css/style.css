@@ -16,5 +16,7 @@ li {
     position: absolute;
     top: 375px;
     left: 0px;
+    padding: 10px;
+    margin: 10px;
 
 }
