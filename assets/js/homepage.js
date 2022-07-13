@@ -47,6 +47,7 @@ var getRecipes = function(searchRecipe) {
 var getDrinkId = function(food) {
     console.log(food);
     
+    
     var apiCocktailUrl ='https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + food;
     fetch(apiCocktailUrl).then(function(response) {
         
@@ -136,15 +137,14 @@ var connectionModal= function () {
 
 var displayDrinkRecipe = function(data) {
 
- 
-    
+
     // display info
     
     for (i = 0; i<data.drinks.length; i++) {
 
-       console.log("display drink loop is working");
+        console.log("display drink loop is working");
 
-       var drinkCardDisplay = document.createElement("div");
+        var drinkCardDisplay = document.createElement("div");
         drinkCardDisplay.id = i+1;
         
          //  display jpg
@@ -177,29 +177,40 @@ var displayDrinkRecipe = function(data) {
          drinkInstructionsEl.innerHTML = drinkInstructions;
          drinkCardDisplay.appendChild(drinkInstructionsEl);
 
-        
-
         drinkContainerEl.appendChild(drinkCardDisplay);
-         //display ingredients 
-            for (x=0; x<16; x++) {
-                if (data.drinks[i][`strMeasure${x}`] != null) {
-                    var drinkMeasureStringEl=document.createElement("p");
-                    // console.log(data.drinks[i][`strMeasure${x}`]);
-                    drinkMeasureStringEl.className = "content" //< ----classname
-                    drinkMeasureStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] +": ";
-                    drinkIngredientStringUl.appendChild(drinkMeasureStringEl);
+
+        //display ingredients 
+        for (x=0; x<16; x++) {
+            if (data.drinks[i][`strMeasure${x}`] != null) {
+                var drinkMeasureStringEl=document.createElement("p");
+                // console.log(data.drinks[i][`strMeasure${x}`]);
+                drinkMeasureStringEl.className = "content" //< ----classname
+                drinkMeasureStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] +": ";
+                drinkIngredientStringUl.appendChild(drinkMeasureStringEl);
             };      
 
-                if (data.drinks[i][`strIngredient${x}`] != null) {
-                    var drinkIngredientStringEl=document.createElement("p");
-                    // console.log(data.drinks[i][`strIngredient${x}`]);
-                    drinkIngredientStringEl.className = "content" //< ----classname
-                    drinkIngredientStringEl.innerHTML = data.drinks[i][`strIngredient${x}`];
-                    drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
-                }
-    };  
+            if (data.drinks[i][`strIngredient${x}`] != null) {
+                var drinkIngredientStringEl=document.createElement("p");
+                // console.log(data.drinks[i][`strIngredient${x}`]);
+                drinkIngredientStringEl.className = "content" //< ----classname
+                drinkIngredientStringEl.innerHTML = data.drinks[i][`strIngredient${x}`];
+                drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
+            }
+
+        };
+
+        // display drink database link
+
+        var drinkLinkEl = document.createElement("a");
+        drinkLinkEl.setAttribute("href", "https://www.thecocktaildb.com/drink/" + data.drinks[i].idDrink);
+        drinkLinkEl.textContent = data.drinks[i].strDrink;
+
+        drinkCardDisplay.appendChild(drinkLinkEl);
+        
+    };
+
 };
-};
+
 
 var displayRecipe = function(data) {
     //clear out old content
@@ -255,13 +266,11 @@ var displayRecipe = function(data) {
             missedIngNamEl.classname="li"; // <-- className here
             recipeUl.appendChild(missedIngNamEl);
         }
+
     }
 
+};
 
-
-
-
-    };
 //put into local storage
 var saved = function(storedFood) {
 
