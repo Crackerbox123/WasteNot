@@ -46,11 +46,14 @@ var getRecipes = function(searchRecipe) {
 
 var getDrinkId = function(food) {
     console.log(food);
+    
     var apiCocktailUrl ='https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + food;
     fetch(apiCocktailUrl).then(function(response) {
-       
+        
         if(response.ok) {
+            drinkContainerEl.innerHTML = ``;
           response.json().then(function(data) {
+            console.log(data.drinks.length)
             for  (var i=0; i<data.drinks.length; i++) {
                  var drinkID= data.drinks[i].idDrink;
                 fullCktailDet(drinkID);
@@ -64,7 +67,7 @@ var getDrinkId = function(food) {
         
     })
     .catch(function(error) {
-        //alert("Unable to connect");
+    //  alert("Unable to connect");
         connectionModal();
    });
 };
@@ -94,6 +97,7 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
     //get value from input element
     var food = foodInputEl.value.trim();
+   
     if (food) {
         getRecipes(food);
         getDrinkId(food);
@@ -103,15 +107,14 @@ var formSubmitHandler = function(event) {
         //alert("Please enter a food");
         console.log("food isn't found");
         
-            foodModal();
+         foodModal();
             
     }
 };
 
 //modal functions
 var foodModal = function() {
-    modal.style.display= "block";
-      
+    modal.style.display= "block";     
 };
 
 close.onclick = function() {
@@ -133,38 +136,44 @@ var connectionModal= function () {
 
 var displayDrinkRecipe = function(data) {
 
-    // clear old content
-    drinkContainerEl.textContent = "";
+ 
     
     // display info
+    
     for (i = 0; i<data.drinks.length; i++) {
+
        console.log("display drink loop is working");
 
        var drinkCardDisplay = document.createElement("div");
         drinkCardDisplay.id = i+1;
-       
+        
          //  display jpg
          var drinkItemImage = data.drinks[i].strDrinkThumb;
+         var drinkImageDivEl=document.createElement("div");
+         drinkImageDivEl.className="card-image";
          var drinkItemImageEl = document.createElement("img");
-         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class
+         drinkItemImageEl.setAttribute("src", drinkItemImage);// <----I don't know if the image needs class - no
          drinkCardDisplay.appendChild(drinkItemImageEl);
+
 
          // display name
          var drinkItemName = data.drinks[i].strDrink;
-         console.log(drinkItemName);
-         var drinkItemNameEl = document.createElement("h2");
-         drinkItemNameEl.innerHTML = "Name: "+drinkItemName;
-         drinkItemImageEl.className = ""  // <--- Classname here
+         var drinkCard=document.createElement ("div");
+         drinkCard.className="content";
+        //  console.log(drinkItemName);
+         var drinkItemNameEl = document.createElement("div");
+         drinkItemNameEl.textContent = "Drink Recipe Name: "+drinkItemName;
+         drinkItemNameEl.className = "title is-5"  // <--- Classname here
          drinkCardDisplay.appendChild(drinkItemNameEl);
 
          //display instructions
-        var drinkIngredientStringUl=document.createElement('ul');
+        var drinkIngredientStringUl=document.createElement('div');
         drinkCardDisplay.appendChild(drinkIngredientStringUl);
 
          var drinkInstructions=data.drinks[i].strInstructions;
-         var drinkInstructionsEl=document.createElement("li");
+         var drinkInstructionsEl=document.createElement("div");
          //console.log(drinkInstructions);
-         drinkInstructionsEl.className = "" // <-- Classname here
+         drinkInstructionsEl.className = "content" // <-- Classname here
          drinkInstructionsEl.innerHTML = drinkInstructions;
          drinkCardDisplay.appendChild(drinkInstructionsEl);
 
@@ -174,17 +183,17 @@ var displayDrinkRecipe = function(data) {
          //display ingredients 
             for (x=0; x<16; x++) {
                 if (data.drinks[i][`strMeasure${x}`] != null) {
-                    var drinkMeasureStringEl=document.createElement("li");
-                    console.log(data.drinks[i][`strMeasure${x}`]);
-                    drinkMeasureStringEl.className = "" //< ----classname
+                    var drinkMeasureStringEl=document.createElement("p");
+                    // console.log(data.drinks[i][`strMeasure${x}`]);
+                    drinkMeasureStringEl.className = "content" //< ----classname
                     drinkMeasureStringEl.innerHTML = data.drinks[i][`strMeasure${x}`] +": ";
                     drinkIngredientStringUl.appendChild(drinkMeasureStringEl);
             };      
 
                 if (data.drinks[i][`strIngredient${x}`] != null) {
-                    var drinkIngredientStringEl=document.createElement("li");
-                    console.log(data.drinks[i][`strIngredient${x}`]);
-                    drinkIngredientStringEl.className = "" //< ----classname
+                    var drinkIngredientStringEl=document.createElement("p");
+                    // console.log(data.drinks[i][`strIngredient${x}`]);
+                    drinkIngredientStringEl.className = "content" //< ----classname
                     drinkIngredientStringEl.innerHTML = data.drinks[i][`strIngredient${x}`];
                     drinkIngredientStringUl.appendChild(drinkIngredientStringEl);
                 }
@@ -232,7 +241,7 @@ var displayRecipe = function(data) {
         recipeContainerEl.appendChild(recipeCardDisplay);
 
         for (x=0; x<data[i].usedIngredients.length;x++) {
-            console.log ("this is MF'in working");
+            // console.log ("this is MF'in working");
             var usedIngName = data[i].usedIngredients[x].original;
             var usedIngNameEl = document.createElement("li");
             usedIngNameEl.textContent= usedIngName;
@@ -269,7 +278,7 @@ var loadFood = function () {
     foodArr = JSON.parse(localStorage.getItem("foodItems")) || [];
         for (i=0; i <foodArr.length; i++) {
             var eachFood = foodArr[i];
-            console.log(eachFood);
+            // console.log(eachFood);
             if(eachFood != undefined){
                 foodButtons(eachFood);
             }
