@@ -245,7 +245,7 @@ var displayRecipe = function(data) {
             var usedIngName = data[i].usedIngredients[x].original;
             var usedIngNameEl = document.createElement("li");
             usedIngNameEl.textContent= usedIngName;
-            usedIngNameEl.className="li has-background-warning"; // <-- className here
+            usedIngNameEl.className="li"; // <-- className here
             recipeUl.appendChild(usedIngNameEl);
         } 
         for (x=0; x<data[i].missedIngredients.length; x++) {
