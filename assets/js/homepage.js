@@ -20,7 +20,7 @@ var close = document.getElementsByClassName('modal-close')[0];
 var getRecipes = function(searchRecipe) {
     
     //console.log(searchRecipe);
-    var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + searchRecipe + '&apiKey=66ddd5de554b45bc946bc6143c86952d';
+    var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + searchRecipe + '&apiKey=854e53810e43467a816b9a7449bf9772';
     fetch(apiUrl).then(function(response){
     if(response.ok) {
         response.json().then(function(data) {
@@ -136,13 +136,15 @@ var connectionModal= function () {
 
 var displayDrinkRecipe = function(data) {
 
+    // console.log(data)
+
  
     
     // display info
     
     for (i = 0; i<data.drinks.length; i++) {
 
-       console.log("display drink loop is working");
+      //console.log("display drink loop is working");
 
        var drinkCardDisplay = document.createElement("div");
         drinkCardDisplay.id = i+1;
@@ -205,8 +207,34 @@ var displayRecipe = function(data) {
     //clear out old content
     recipeContainerEl.textContent="";
     foodInputEl.value="";
+    console.log(data);
+    
 
     for (i=0; i<data.length;i++) {
+        
+        // Get hyphenated title
+       var x = data[i].title;
+       var y = x.replace(/ /g, "-");
+       console.log(y);
+       //console.log(data[i].title);
+
+       // Get ID 
+
+       var z = data[i].id;
+       console.log(z);
+
+       // Turn into full url
+
+       linkUrl = 'https://spoonacular.com/recipes/' + y + '-' + z
+
+       console.log(linkUrl);
+
+
+
+
+
+        
+        
 
         var recipeCardDisplay = document.createElement("div");
         recipeCardDisplay.id = i+1;

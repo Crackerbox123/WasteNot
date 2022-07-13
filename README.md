@@ -1,27 +1,21 @@
-Project Details
 
 ## Group Name -
 
-K-bits
+WasteKnot
 
-## Project Description -
+## Concept
 
-A application that stores Plant data + Recipe data can output Recipe ingredients and instructions on how to grow that plant
+WasteKnot - 
 
+An Application that allows you to get creative with the ingredients left in your pantry. Search by ingredient and get a list Spoonacular Recipes and CocktailDB recipes that compose of the ingredient you choose.
 
-## Repository configured - 
+## Process
 
+Past searches are availible as dynamically displayed buttons, and able to be cleared from the page with a Clear History
 
-## User Story  -
+The application utilizes Modals to handle it's error displays
 
-When I look up a plant
-Then I find common names that plant goes by
-
-When I looked up a plant
-Then I want recipes including that plant
-
-When I look up a recipe
-Then I get the ingredients that recipe consists of
+Built with Bulma + Grid frameworks
 
 
 ## Wireframe or sketch of the design  - 
@@ -29,7 +23,7 @@ Then I get the ingredients that recipe consists of
 In github
 
 
-## 2 APIs identified  - 
+## APIs
 
 Spoonacular api:
 
@@ -45,20 +39,11 @@ Backup api keys:
 
 66ddd5de554b45bc946bc6143c86952d
 
-GrowStuff api:
+CocktailDB api:
 
 https://www.growstuff.org/crops/
 
-TBD
-
 ## Notes
-
-possible Apis
-- Spoonacular - https://spoonacular.com/food-api
-
-- planthardniess - https://planthardiness.ars.usda.gov/
-
-- grocery expiration - https://grocy.info/
 
 
 
