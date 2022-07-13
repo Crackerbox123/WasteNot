@@ -267,6 +267,15 @@ var displayRecipe = function(data) {
             recipeUl.appendChild(missedIngNamEl);
         }
 
+        // display database recipe link
+        var recipeLinkEl = document.createElement("a");
+        var recipeLink = recipeName + " " + data[i].id;
+        recipeLink = recipeLink.replace(/ /g,"-");
+        recipeLinkEl.setAttribute("href", "https://spoonacular.com/" + recipeLink);
+        recipeLinkEl.textContent = recipeName;
+
+        recipeCardDisplay.appendChild(recipeLinkEl);
+
     }
 
 };
