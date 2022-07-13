@@ -47,8 +47,8 @@ var getRecipes = function(searchRecipe) {
 var getDrinkId = function(food) {
     console.log(food);
     
-    //9973533
-    var apiCocktailUrl ='https://www.thecocktaildb.com/api/json/v2/1/filter.php?i=' + food;
+    
+    var apiCocktailUrl ='https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=' + food;
     fetch(apiCocktailUrl).then(function(response) {
         
         if(response.ok) {
@@ -74,7 +74,7 @@ var getDrinkId = function(food) {
 };
 
 var fullCktailDet = function (id) {
-    var apiDetailsCocktailUrl = 'https://www.thecocktaildb.com/api/json/v2/1/lookup.php?i=' + id;
+    var apiDetailsCocktailUrl = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=' + id;
     fetch(apiDetailsCocktailUrl).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
@@ -169,6 +169,7 @@ var displayDrinkRecipe = function(data) {
          //display instructions
         var drinkIngredientStringUl=document.createElement('div');
         drinkCardDisplay.appendChild(drinkIngredientStringUl);
+
          var drinkInstructions=data.drinks[i].strInstructions;
          var drinkInstructionsEl=document.createElement("div");
          //console.log(drinkInstructions);
@@ -178,7 +179,7 @@ var displayDrinkRecipe = function(data) {
 
         drinkContainerEl.appendChild(drinkCardDisplay);
 
-         //display ingredients 
+        //display ingredients 
         for (x=0; x<16; x++) {
             if (data.drinks[i][`strMeasure${x}`] != null) {
                 var drinkMeasureStringEl=document.createElement("p");
