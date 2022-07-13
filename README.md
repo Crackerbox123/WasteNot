@@ -1,39 +1,40 @@
-Project Details
+## Project Name 
 
-## Group Name -
+WasteKnot
 
-K-bits
+## Collaborators 
 
-## Project Description -
+Bryan, Ian, Stephanie, Tucker, Kalin
 
-A application that stores Plant data + Recipe data can output Recipe ingredients and instructions on how to grow that plant
+## Concept
+WasteKnot - An Application that allows you to get creative with the ingredients left in your pantry. Search by ingredient and get a list Spoonacular Recipes and CocktailDB recipes that compose of the ingredient you choose.
 
+## Process
+Past searches are availible as dynamically displayed buttons, and able to be cleared from the page with a Clear History
 
-## Repository configured - 
+The application utilizes Modals to handle it's error displays
 
+Built with Bulma + Grid framework
 
-## User Story  -
+# Deployment ScreenShot + URL
 
-When I look up a plant
-Then I find common names that plant goes by
+<img width="952" alt="6bc24b84ca59100f6ef0b3c29307ce93" src="https://user-images.githubusercontent.com/61638208/178854344-7ff99ca6-f656-4a17-8b47-7707d621e5ca.png">
 
-When I looked up a plant
-Then I want recipes including that plant
-
-When I look up a recipe
-Then I get the ingredients that recipe consists of
-
-
-## Wireframe or sketch of the design  - 
-
-In github
+https://crackerbox123.github.io/WasteNot/
 
 
-## 2 APIs identified  - 
+## GitHub Repository
+https://github.com/Crackerbox123/WasteNot/tree/main
+
+## Notes
+
+
+## APIs
 
 Spoonacular api:
 
-https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=9145364b47d54a31968bed38b03f6572
+https://api.spoonacular.com/food/products/search?query=yogurt&
+apiKey=9145364b47d54a31968bed38b03f6572
 
 Backup api keys:
 
@@ -44,21 +45,3 @@ Backup api keys:
 854e53810e43467a816b9a7449bf9772
 
 66ddd5de554b45bc946bc6143c86952d
-
-GrowStuff api:
-
-https://www.growstuff.org/crops/
-
-TBD
-
-## Notes
-
-possible Apis
-- Spoonacular - https://spoonacular.com/food-api
-
-- planthardniess - https://planthardiness.ars.usda.gov/
-
-- grocery expiration - https://grocy.info/
-
-
-
